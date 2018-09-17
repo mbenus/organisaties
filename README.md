@@ -1,3 +1,10 @@
 # organisaties
 
 Simple microservice to query some organisations
+
+Used Environment variables:
+HOST
+POSTGRES_ENV_DB_NAME
+POSTGRES_ENV_POSTGRES_USER
+POSTGRES_ENV_POSTGRES_PASSWORD
+POSTGRES_ENV_PORT

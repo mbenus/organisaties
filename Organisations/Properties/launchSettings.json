@@ -8,14 +8,19 @@
     }
   },
   "profiles": {
-			"IIS Express": {
-				"commandName": "IISExpress",
-				"launchBrowser": true,
-				"launchUrl": "api/organisations",
-				"environmentVariables": {
-					"ASPNETCORE_ENVIRONMENT": "Development"
-				}
-			},
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "api/organisations",
+      "environmentVariables": {
+        "POSTGRES_ENV_POSTGRES_USER": "organisations",
+        "HOST": "moneropoel.nl",
+        "POSTGRES_ENV_POSTGRES_PASSWORD": "organisations",
+        "POSTGRES_ENV_DB_NAME": "organisations",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "POSTGRES_ENV_PORT": "5432"
+      }
+    },
     "Organisations": {
       "commandName": "Project",
       "launchBrowser": true,

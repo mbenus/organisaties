@@ -27,20 +27,22 @@ namespace Organisations
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			var configurationServiceDatabase = new ConfigurationBuilder();
-			configurationServiceDatabase.SetBasePath(Directory.GetCurrentDirectory());
-			configurationServiceDatabase.AddJsonFile("databasesettings.json");
-			var configurationDatabase = configurationServiceDatabase.Build();
-
 			var configurationService = new ConfigurationService();
 
+			// Determine connectionstring via environment variables
+			var host = Environment.GetEnvironmentVariable("HOST");
+			var dbase = Environment.GetEnvironmentVariable("POSTGRES_ENV_DB_NAME");
+			var username = Environment.GetEnvironmentVariable("POSTGRES_ENV_POSTGRES_USER");
+			var password = Environment.GetEnvironmentVariable("POSTGRES_ENV_POSTGRES_PASSWORD");
+			var port = Environment.GetEnvironmentVariable("POSTGRES_ENV_PORT");
+			var connectionString = $"Host={host};Database={dbase};Username={username};Password={password};Port={port}";
+
 			services.AddDbContext<OrganisationContext>(options =>
-				options.UseNpgsql(configurationDatabase["ConnectionStrings:User"]));
+				options.UseNpgsql(connectionString));
 
 			services.AddScoped<IOrganisationContext, OrganisationContext>();
 			services.AddScoped<IOrganisationService, OrganisationService>();
 			services.AddSingleton<IConfigurationService, ConfigurationService>();
-
 
 			services.AddMvc()
 				// support also application/xml besides the default: json
