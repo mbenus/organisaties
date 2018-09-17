@@ -31,9 +31,9 @@ namespace Organisations
 
 			// Determine connectionstring via environment variables
 			var host = Environment.GetEnvironmentVariable("HOST");
-			var dbase = Environment.GetEnvironmentVariable("POSTGRES_ENV_DB_NAME");
-			var username = Environment.GetEnvironmentVariable("POSTGRES_ENV_POSTGRES_USER");
-			var password = Environment.GetEnvironmentVariable("POSTGRES_ENV_POSTGRES_PASSWORD");
+			var dbase = Environment.GetEnvironmentVariable("POSTGRES_ENV_DBNAME");
+			var username = Environment.GetEnvironmentVariable("POSTGRES_ENV_USER");
+			var password = Environment.GetEnvironmentVariable("POSTGRES_ENV_PASSWORD");
 			var port = Environment.GetEnvironmentVariable("POSTGRES_ENV_PORT");
 			var connectionString = $"Host={host};Database={dbase};Username={username};Password={password};Port={port}";
 

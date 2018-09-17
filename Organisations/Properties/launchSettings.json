@@ -13,12 +13,12 @@
       "launchBrowser": true,
       "launchUrl": "api/organisations",
       "environmentVariables": {
-        "POSTGRES_ENV_POSTGRES_USER": "organisations",
+        "POSTGRES_ENV_PASSWORD": "organisations",
         "HOST": "moneropoel.nl",
-        "POSTGRES_ENV_POSTGRES_PASSWORD": "organisations",
-        "POSTGRES_ENV_DB_NAME": "organisations",
+        "POSTGRES_ENV_DBNAME": "organisations",
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "POSTGRES_ENV_PORT": "5432"
+        "POSTGRES_ENV_PORT": "5432",
+        "POSTGRES_ENV_USER": "organisations"
       }
     },
     "Organisations": {
