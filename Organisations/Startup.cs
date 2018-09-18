@@ -23,6 +23,7 @@ namespace Organisations
         }
 
         public IConfiguration Configuration { get; }
+		private string _connectionstring;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -35,10 +36,10 @@ namespace Organisations
 			var username = Environment.GetEnvironmentVariable("POSTGRES_ENV_USER");
 			var password = Environment.GetEnvironmentVariable("POSTGRES_ENV_PASSWORD");
 			var port = Environment.GetEnvironmentVariable("POSTGRES_ENV_PORT");
-			var connectionString = $"Host={host};Database={dbase};Username={username};Password={password};Port={port}";
+			_connectionstring = $"Host={host};Database={dbase};Username={username};Password={password};Port={port}";
 
 			services.AddDbContext<OrganisationContext>(options =>
-				options.UseNpgsql(connectionString));
+				options.UseNpgsql(_connectionstring));
 
 			services.AddScoped<IOrganisationContext, OrganisationContext>();
 			services.AddScoped<IOrganisationService, OrganisationService>();
@@ -141,6 +142,7 @@ namespace Organisations
 
 			Log.Logger = logger.CreateLogger();
 			Log.Information("Starting organisation api");
+			Log.Information($"Connectionstring: {_connectionstring}");
 
 			if (conf.LogIncomingRequests)
 			{
